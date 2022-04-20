@@ -224,6 +224,10 @@ def run_attacks(attack_input: AttackInputData,
   if slicing_spec.by_class:
     num_classes = attack_input.num_classes
   input_slice_specs = get_single_slice_specs(slicing_spec, num_classes)
+  num_slice_specs = len(input_slice_specs)
+  num_attacks = len(list(attack_types))
+  logging.info('Will run %s attacks on each of %s slice specifications.',
+               num_attacks, num_slice_specs)
   for single_slice_spec in input_slice_specs:
     attack_input_slice = get_slice(attack_input, single_slice_spec)
     for attack_type in attack_types:
